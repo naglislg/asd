@@ -1,4 +1,4 @@
-const form = {
+const forma = {
   firstNameLabel: 'First Name',
   middleNameLabel: 'Middle Name',
   lastNameLabel: 'Last Name',
@@ -40,30 +40,56 @@ document.getElementById("companyLabel").innerHTML = 'Company';
 document.getElementById("coursesLabel").innerHTML = 'Courses';
 document.getElementById("additionalCommentsLabel").innerHTML = 'Additional Comments';
 
-
-function myFunction(selector, day) {
-
-  if (day === 12) {
-    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  
-    for (var i = 0; i < day; i++) {
-      selector.options[i] = new Option(monthNames[i], i + 1);
-    }
-  
-  } else if (day === 18) {
-    var d = new Date().getFullYear() - 17;
-  
-    for (var i = 1; i <= 50; i++) {
-      d--;
-      selector.options[i - 1] = new Option(d, d);
-    }
-  } else {
-    for (var i = 1; i <= day; i++) {
-      selector.options[i - 1] = new Option(i, i);
-    }
-  }
+window.updateMonth= function(iMonth) {
+  var el = document.getElementById("day");
+  el.options.length = 0;
+ 
+  for(var d = new Date(2013,iMonth-1,1); d.getMonth()==iMonth-1; d.setDate(d.getDate()+1)) {
+      option = new Option(d.getDate(), d.getDate());
+      el.options[d.getDate()-1] = option;
+  }; 
+         
 }
 
-myFunction(document.getElementById("birthMonth"), 12);
-myFunction(document.getElementById("birthDay"), 31);
-myFunction(document.getElementById("birthYear"), 18);
+function generateDayListByMonth(month = 0){
+  const monthDays = [31, 28, 31, 30, 31, 30, 31, 30, 30, 31, 31, 30];
+  var days = [];
+  for (var i = 1; i <= monthDays[month]; i++){
+    days.push(i);
+  }
+  return days;
+}
+
+function generateArrayOfYears() {
+  var max = new Date().getFullYear();
+  var min = max - 19;
+  var years = [];
+
+  for (var i = max; i >= min; i--) {
+    years.push(i);
+  }
+  return years;
+}
+
+
+const form = {
+  month: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+  day: generateDayListByMonth(),
+  year: generateArrayOfYears()
+}
+
+
+function createOption(dataList){
+  let option = '';
+  let i = 1;
+
+  for(let dataItem of dataList){
+    option += "<option value=" + i + ">" + dataItem + "</option>";
+    i++;
+  }
+  return option;
+}
+for(const formKey of Object.keys(form)){
+const options = createOption(form[formKey]);
+document.getElementById(formKey).innerHTML = options;
+}

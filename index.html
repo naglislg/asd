@@ -26,17 +26,16 @@
     <div class="container">
       <div class="date-group">
         <h4>Birth Date</h4>
-
         <div class="select">
-          <select id="birthMonth" name="birthMonth"></select><br />
+          <select id="month" name="birthMonth" onchange="updateMonth(this.value);"></select><br/>
           <label id="monthLabel" for="month"></label>
         </div>
         <div class="select">
-          <select id="birthDay" name="birthDay"></select><br />
+          <select id="day" name="birthDay"></select><br/>
           <label id="dayLabel" for="day"></label>
         </div>
         <div class="select">
-          <select id="birthYear" name="birthYear"></select><br />
+          <select id="year" name="birthYear"></select><br/>
           <label id="yearLabel" for="year"></label>
         </div>
       </div>
@@ -124,6 +123,6 @@
     </div>
   </form>
   <script src="script.js"></script>
-</body>
 
+</body>
 </html>
