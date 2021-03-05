@@ -27,15 +27,15 @@
       <div class="date-group">
         <h4>Birth Date</h4>
         <div class="select">
-          <select id="month" name="birthMonth" onchange="updateMonth(this.value);"></select><br/>
+          <select id="month" name="birthMonth" onchange="updateMonth();"></select><br />
           <label id="monthLabel" for="month"></label>
         </div>
         <div class="select">
-          <select id="day" name="birthDay"></select><br/>
+          <select id="day" name="birthDay"></select><br />
           <label id="dayLabel" for="day"></label>
         </div>
         <div class="select">
-          <select id="year" name="birthYear"></select><br/>
+          <select id="year" name="birthYear" onchange="updateMonth();"></select><br />
           <label id="yearLabel" for="year"></label>
         </div>
       </div>
@@ -62,17 +62,18 @@
     </div>
     <div class="container form-group-into-two-collumn">
       <div>
-        <input type="text" /><br />
-        <label id="cityLabel" for="city"></label>
+        <select id="countrySelect" name="city" onchange="makeSubmenu(this.value)">
+          <option value="" disabled selected>Please Select</option>
+        </select>
+        <label id="postCodeLabel" for="city"></label>
       </div>
       <div>
-        <input type="text" /><br />
+        <select id="citySelect" name="state">
+          <option value="" disabled selected>Please Select</option>
+        </select>
+        <br />
         <label id="stateAndProvinceLabel" for="state"></label>
       </div>
-    </div>
-    <div class="form-group margin-bottom-25">
-      <input type="text" /><br />
-      <label id="postCodeLabel" for="postcode"></label>
     </div>
     <div class="container form-group-into-two-collumn">
       <div>
@@ -125,4 +126,5 @@
   <script src="script.js"></script>
 
 </body>
+
 </html>

@@ -299,4 +299,24 @@ const options = createOption(form[formKey]);
 document.getElementById(formKey).innerHTML = options;
 }
 
+
+
+var daata = new Date(2013, 3 - 1, 1);
+var daata2 = daata.getMonth();
+var daata3 = daata.setDate(2);
+
+var elere = document.getElementById("year").selectedIndex;
+//var elere = document.getElementById("year").value;
+//elere.options.length = 0;
+
+document.getElementById("daata").innerHTML = elere;
+
+function myFunction() {
+
+  var el = document.getElementById("day");
+
+  var x = document.getElementById("year").selectedIndex;
+  alert(document.getElementById("year")[x].label);
+}
+
 */
