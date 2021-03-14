@@ -7,20 +7,20 @@
 </head>
 
 <body>
-  <form action="">
+  <form name="myform"  method="post" action="#">
     <h4>Student Name</h4>
     <div class="container name-group">
       <div>
-        <input type="text" /><br />
-        <label id="firstNameLabel" for="firstname"></label>
+        <input id="firstName" type="text" /><br />
+        <label id="firstNameLabel" for="firstName"></label>
       </div>
       <div>
-        <input type="text" /><br />
-        <label id="middleNameLabel" for="middlename"></label>
+        <input id="middleName" type="text" /><br />
+        <label id="middleNameLabel" for="middleName"></label>
       </div>
       <div>
-        <input type="text" /><br />
-        <label id="lastNameLabel" for="lastname"></label>
+        <input id="lastName" type="text" /><br />
+        <label id="lastNameLabel" for="lastName"></label>
       </div>
     </div>
     <div class="container">
@@ -53,12 +53,12 @@
     </div>
     <div class="form-group margin-bottom-25">
       <h4>Address</h4>
-      <input type="text" /><br />
+      <input id="street" type="text" /><br />
       <label id="streetLabel" for="street"></label>
     </div>
     <div class="form-group margin-bottom-25">
-      <input type="text" /><br />
-      <label id="streetLineTwoLabel" for="streetLineTwoLabel"></label>
+      <input id="streetLineTwo" type="text" /><br />
+      <label id="streetLineTwoLabel" for="streetLineTwo"></label>
     </div>
     <div class="container form-group-into-two-collumn">
       <div>
@@ -77,22 +77,23 @@
     </div>
     <div class="container form-group-into-two-collumn">
       <div>
-        <h4>Student E-mail</h4>
-        <input type="text" placeholder="ex: myname@example.com" /><br />
-        <label id="exampleEmailLabel" for="example-email"></label>
+        <h4>E-mail Address</h4>
+        <input id="emailAddress" type="text" onblur="validateEmail()" placeholder="ex: myname@example.com" /><br />
+        <div id="msgEmailAddress"></div>
       </div>
       <div>
-        <h4 id="mobileNumberLabel">Mobile Number</h4>
-        <input type="text" placeholder="(000) 000-0000" />
+        <h4 id="mobileNumberLabel"></h4>
+        <input id="phoneNumber" type="text" onblur="validatephonenumber('phoneNumber')" placeholder="(000) 000-0000" />
+        <div id="msgPhoneNumber"></div>
       </div>
     </div>
     <div class="container form-group-into-two-collumn">
       <div>
-        <h4 id="phoneNumberLabel">Phone Number</h4>
+        <h4 id="phoneNumberLabel"></h4>
         <input type="text" placeholder="(000) 000-0000" />
       </div>
       <div>
-        <h4 id="workNumberLabel">Work Number</h4>
+        <h4 id="workNumberLabel"></h4>
         <input type="text" placeholder="(000) 000-0000" />
       </div>
     </div>
@@ -111,7 +112,7 @@
     </div>
     <div class="form-group margin-bottom-15">
       <h4 id="additionalCommentsLabel"></h4>
-      <textarea name="" id="" cols="" rows="" placeholder="Type here..."></textarea>
+      <textarea placeholder="Type here..."></textarea>
     </div>
     <hr />
     <div class="container margin-top-15">
@@ -123,8 +124,8 @@
       </div>
     </div>
   </form>
+  <div id="root"></div>
   <script src="script.js"></script>
-
 </body>
 
 </html>

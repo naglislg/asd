@@ -1,17 +1,15 @@
-const forma = {
+const textLabels = {
   firstNameLabel: 'First Name',
   middleNameLabel: 'Middle Name',
   lastNameLabel: 'Last Name',
-  monthLabel: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-  dayLabel: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
-  yearLabel: [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010],
-  genderLabel: ['male', 'female', 'other'],
+  monthLabel: 'Month',
+  dayLabel: 'Day',
+  yearLabel: 'Year',
+  genderLabel: 'Gender',
   streetLabel: 'Street Address',
   streetLineTwoLabel: 'Street Address Line 2',
-  cityLabel: 'City',
   stateAndProvinceLabel: 'State / Province',
   postCodeLabel: 'Postal / Zip Code',
-  exampleEmailLabel: 'example@example.com',
   mobileNumberLabel: 'Mobile Number',
   phoneNumberLabel: 'Phone Number',
   workNumberLabel: 'Work Number',
@@ -20,62 +18,9 @@ const forma = {
   additionalCommentsLabel: 'Additional Comments'
 }
 
-document.getElementById("firstNameLabel").innerHTML = 'First Name';
-document.getElementById("middleNameLabel").innerHTML = 'Middle Name';
-document.getElementById("lastNameLabel").innerHTML = 'Last Name';
-document.getElementById("monthLabel").innerHTML = 'Month';
-document.getElementById("dayLabel").innerHTML = 'Day';
-document.getElementById("yearLabel").innerHTML = 'Year';
-document.getElementById("genderLabel").innerHTML = 'Gender';
-document.getElementById("streetLabel").innerHTML = 'Street Address';
-document.getElementById("streetLineTwoLabel").innerHTML = 'Street Address Line 2';
-
-document.getElementById("stateAndProvinceLabel").innerHTML = 'State / Province';
-document.getElementById("postCodeLabel").innerHTML = 'Postal / Zip Code';
-
-document.getElementById("exampleEmailLabel").innerHTML = 'ex: myname@example.com';
-document.getElementById("mobileNumberLabel").innerHTML = 'Mobile Number';
-document.getElementById("phoneNumberLabel").innerHTML = 'Phone Number';
-document.getElementById("workNumberLabel").innerHTML = 'Work Number';
-document.getElementById("companyLabel").innerHTML = 'Company';
-document.getElementById("coursesLabel").innerHTML = 'Courses';
-document.getElementById("additionalCommentsLabel").innerHTML = 'Additional Comments';
-
-window.updateMonth = function () {
-  var el = document.getElementById("day");
-  el.options.length = 0;
-
-  var x1 = document.getElementById("month").selectedIndex;
-  var iMonth = document.getElementById("month")[x1].value;
-
-  var x2 = document.getElementById("year").selectedIndex;
-  var iYear = document.getElementById("year")[x2].label;
-
-  //console.log(iYear);
-  for (var d = new Date(iYear, iMonth - 1, 1); d.getMonth() == iMonth - 1; d.setDate(d.getDate() + 1)) {
-    option = new Option(d.getDate(), d.getDate());
-    el.options[d.getDate() - 1] = option;
-  };
-}
-
-function generateDayListByMonth(month = 0) {
-  const monthDays = [31, 28, 31, 30, 31, 30, 31, 30, 30, 31, 31, 30];
-  var days = [];
-  for (var i = 1; i <= monthDays[month]; i++) {
-    days.push(i);
-  }
-  return days;
-}
-
-function generateArrayOfYears() {
-  var max = new Date().getFullYear();
-  var min = max - 19;
-  var years = [];
-
-  for (var i = max; i >= min; i--) {
-    years.push(i);
-  }
-  return years;
+for (const labelKey of Object.keys(textLabels)) {
+  const optionss = textLabels[labelKey];
+  document.getElementById(labelKey).innerHTML = optionss;
 }
 
 const form = {
@@ -84,12 +29,48 @@ const form = {
   year: generateArrayOfYears()
 }
 
+window.updateMonth = function () {
+  const el = document.getElementById("day");
+  el.options.length = 0;
+
+  const x1 = document.getElementById("month").selectedIndex;
+  const iMonth = document.getElementById("month")[x1].value;
+
+  const x2 = document.getElementById("year").selectedIndex;
+  const iYear = document.getElementById("year")[x2].label;
+
+  for (let d = new Date(iYear, iMonth - 1, 1); d.getMonth() === iMonth - 1; d.setDate(d.getDate() + 1)) {
+    const option = new Option(d.getDate(), d.getDate());
+    el.options[d.getDate() - 1] = option;
+  };
+}
+
+function generateDayListByMonth(month = 0) {
+  const monthDays = [31, 28, 31, 30, 31, 30, 31, 30, 30, 31, 31, 30];
+  const days = [];
+  for (let i = 1; i <= monthDays[month]; i++) {
+    days.push(i);
+  }
+  return days;
+}
+
+function generateArrayOfYears() {
+  const max = new Date().getFullYear();
+  const min = max - 19;
+  const years = [];
+
+  for (let i = max; i >= min; i--) {
+    years.push(i);
+  }
+  return years;
+}
+
 function createOption(dataList) {
   let option = '';
   let i = 1;
 
   for (let dataItem of dataList) {
-    //console.log(i);
+
     option += "<option value=" + i + ">" + dataItem + "</option>";
     i++;
   }
@@ -100,7 +81,7 @@ for (const formKey of Object.keys(form)) {
   document.getElementById(formKey).innerHTML = options;
 }
 
-var citiesByState = {
+const citiesByPost = {
   AL: ['ST ALBANS', 'HARPENDEN', 'WELWYN', 'HATFIELD'],
   B: ['BIRMINGHAM', 'ALCESTER', 'BROMSGROVE', 'HALESOWEN', 'CRADLEY HEATH', 'ROWLEY REGIS', 'SMETHWICK', 'OLDBURY', 'WEST BROMWICH', 'SUTTON COLDFIELD', 'TAMWORTH', 'STUDLEY'],
   BH: ['BOURNEMOUTH', 'POOLE', 'BROADSTONE', 'SWANAGE', 'WIMBORNE', 'FERNDOWN', 'CHRISTCHURCH', 'RINGWOOD', 'NEW MILTON', 'VERWOOD'],
@@ -110,21 +91,50 @@ var citiesByState = {
 }
 
 window.onload = function () {
-  var countySel = document.getElementById("countrySelect");
+  const countySel = document.getElementById("countrySelect");
 
-  for (var country in citiesByState) {
+  for (let country in citiesByPost) {
     countySel.options[countySel.options.length] = new Option(country, country);
   }
 }
 
 function makeSubmenu(value) {
-  console.log(value);
-  if (value.length == 0) document.getElementById("citySelect").innerHTML = "<option></option>";
-  else {
-    var citiesOptions = "";
-    for (cityId in citiesByState[value]) {
-      citiesOptions += "<option>" + citiesByState[value][cityId] + "</option>";
+  if (value.length === 0) {
+    document.getElementById("citySelect").innerHTML = "<option></option>";
+  } else {
+    let citiesOptions = '';
+    for (let cityId in citiesByPost[value]) {
+     citiesOptions += "<option>" + citiesByPost[value][cityId] + "</option>";
     }
     document.getElementById("citySelect").innerHTML = citiesOptions;
+  }
+}
+
+function validateEmail() {
+
+  const emailAddress = document.getElementById('emailAddress').value;
+  const reexp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  //const emailCheck = reexp.test(String(emailAddress).toLowerCase());
+
+  if (reexp.test(String(emailAddress).toLowerCase()) === false) {
+    const emailMessage = 'Incorrect email address.';
+    document.getElementById("msgEmailAddress").className = "color-red";
+    document.getElementById("msgEmailAddress").innerHTML = emailMessage;
+  } else {
+    document.getElementById("msgEmailAddress").innerHTML = '';
+  }
+}
+
+function validatephonenumber(elementId) {
+
+  elementId = document.getElementById(elementId).value;
+  const regEx = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+  //const regEx = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
+  if (regEx.test(elementId) === false) {
+    const phoneNumberMessage = 'Incorrect value.';
+    document.getElementById("msgPhoneNumber").className = 'color-red';
+    document.getElementById("msgPhoneNumber").innerHTML = phoneNumberMessage;
+  } else {
+    document.getElementById("msgPhoneNumber").innerHTML = '';
   }
 }
