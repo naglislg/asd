@@ -127,14 +127,17 @@ function validateEmail() {
 
 function validatephonenumber(elementId) {
 
-  elementId = document.getElementById(elementId).value;
+  const elementvalue = document.getElementById(elementId).value;
   const regEx = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
   //const regEx = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
-  if (regEx.test(elementId) === false) {
-    const phoneNumberMessage = 'Incorrect value.';
-    document.getElementById("msgPhoneNumber").className = 'color-red';
-    document.getElementById("msgPhoneNumber").innerHTML = phoneNumberMessage;
+  if (regEx.test(elementvalue) === false) {
+    const errorMessage = 'Incorrect number';
+
+    document.getElementById(elementId+'Message').className = 'color-red';
+    document.getElementById(elementId+'Message').innerHTML = errorMessage;
   } else {
-    document.getElementById("msgPhoneNumber").innerHTML = '';
+    document.getElementById(elementId+'Message').innerHTML = '';
   }
 }
+//const elementIds = 'phoneNumber';
+//document.getElementById(elementIds+'Message').innerHTML = 'asdasdasdasdasd';
